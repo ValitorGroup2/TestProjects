@@ -1,13 +1,12 @@
 package helloworld.com.helloworld;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.view.View;
-import android.content.Intent;
+import android.widget.TextView;
 
 public class HelloWorld extends ActionBarActivity {
     TextView textView;
@@ -17,8 +16,6 @@ public class HelloWorld extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.helloworld_world);
         textView = (TextView)findViewById(R.id.change_this_text);
-
-
     }
     public void changeTheText(View view)
     {
