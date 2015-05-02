@@ -12,4 +12,7 @@
     <string name="action_calculator">Reiknivél</string>
     <string name="square_root_symbol">\u221a</string>
     <string name="x_squared">x^2</string>
+    <string name="descripe_vistit_settings_page">Til að geta breytt stillingum, þá þarft þú að fara á heimasíðu Vasans og breyta þeim þar.</string>
+    <string name="visit_website">Opna heimasíðu</string>
+    <string name="url_website">http://www.guttih.com</string>
 </resources>
