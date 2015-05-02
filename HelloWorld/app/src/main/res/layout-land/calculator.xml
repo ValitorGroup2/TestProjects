@@ -22,7 +22,7 @@
     
     <Button
         android:layout_width="76dp"
-        android:layout_height="76dp"
+        android:layout_height="40dp"
         android:text="0"
         android:id="@+id/button0"
         android:onClick="btnClicked"
@@ -33,7 +33,7 @@
 
     <Button
         android:layout_width="76dp"
-        android:layout_height="76dp"
+        android:layout_height="40dp"
         android:text="1"
         android:id="@+id/button1"
         android:onClick="btnClicked"
@@ -44,7 +44,7 @@
 
     <Button
         android:layout_width="76dp"
-        android:layout_height="76dp"
+        android:layout_height="40dp"
         android:text="2"
         android:id="@+id/button2"
         android:layout_alignBottom="@+id/button1"
@@ -55,7 +55,7 @@
 
     <Button
         android:layout_width="76dp"
-        android:layout_height="76dp"
+        android:layout_height="40dp"
         android:text="+"
         android:id="@+id/buttonPlus"
         android:layout_below="@+id/button9"
@@ -66,7 +66,7 @@
 
     <Button
         android:layout_width="76dp"
-        android:layout_height="76dp"
+        android:layout_height="40dp"
         android:text="C"
         android:id="@+id/buttonClear"
         android:layout_below="@+id/editCalc"
@@ -79,7 +79,7 @@
 
     <Button
         android:layout_width="76dp"
-        android:layout_height="76dp"
+        android:layout_height="40dp"
         android:text="4"
         android:id="@+id/button4"
         android:onClick="btnClicked"
@@ -90,7 +90,7 @@
 
     <Button
         android:layout_width="76dp"
-        android:layout_height="76dp"
+        android:layout_height="40dp"
         android:text="/"
         android:id="@+id/buttonDivide"
         android:layout_alignBottom="@+id/buttonClear"
@@ -101,7 +101,7 @@
 
     <Button
         android:layout_width="76dp"
-        android:layout_height="76dp"
+        android:layout_height="40dp"
         android:text="*"
         android:id="@+id/buttonMultiply"
         android:layout_alignBottom="@+id/buttonDivide"
@@ -112,7 +112,7 @@
 
     <Button
         android:layout_width="76dp"
-        android:layout_height="76dp"
+        android:layout_height="40dp"
         android:text="&lt;"
         android:id="@+id/buttonBackspace"
         android:layout_alignBottom="@+id/buttonMultiply"
@@ -123,7 +123,7 @@
 
     <Button
         android:layout_width="76dp"
-        android:layout_height="76dp"
+        android:layout_height="40dp"
         android:text="7"
         android:id="@+id/button7"
         android:onClick="btnClicked"
@@ -134,7 +134,7 @@
 
     <Button
         android:layout_width="76dp"
-        android:layout_height="76dp"
+        android:layout_height="40dp"
         android:text="8"
         android:id="@+id/button8"
         android:layout_below="@+id/buttonDivide"
@@ -145,7 +145,7 @@
 
     <Button
         android:layout_width="76dp"
-        android:layout_height="76dp"
+        android:layout_height="40dp"
         android:text="9"
         android:id="@+id/button9"
         android:layout_below="@+id/buttonDivide"
@@ -156,7 +156,7 @@
 
     <Button
         android:layout_width="76dp"
-        android:layout_height="76dp"
+        android:layout_height="40dp"
         android:text="-"
         android:id="@+id/buttonMinus"
         android:layout_below="@+id/buttonMultiply"
@@ -167,7 +167,7 @@
 
     <Button
         android:layout_width="76dp"
-        android:layout_height="76dp"
+        android:layout_height="40dp"
         android:text="5"
         android:id="@+id/button5"
         android:onClick="btnClicked"
@@ -178,7 +178,7 @@
 
     <Button
         android:layout_width="76dp"
-        android:layout_height="76dp"
+        android:layout_height="40dp"
         android:text="6"
         android:id="@+id/button6"
         android:layout_below="@+id/button8"
@@ -189,7 +189,7 @@
 
     <Button
         android:layout_width="76dp"
-        android:layout_height="76dp"
+        android:layout_height="40dp"
         android:text="3"
         android:id="@+id/button3"
         android:layout_alignTop="@+id/button2"
@@ -200,7 +200,7 @@
 
     <Button
         android:layout_width="76dp"
-        android:layout_height="76dp"
+        android:layout_height="40dp"
         android:text="+/-"
         android:id="@+id/buttonSign"
         android:layout_below="@+id/buttonPlus"
@@ -211,7 +211,7 @@
 
     <Button
         android:layout_width="76dp"
-        android:layout_height="76dp"
+        android:layout_height="40dp"
         android:text="."
         android:id="@+id/buttonDot"
         android:layout_below="@+id/button2"
@@ -222,7 +222,7 @@
 
     <Button
         android:layout_width="160dp"
-        android:layout_height="76dp"
+        android:layout_height="40dp"
         android:text="="
         android:id="@+id/buttonEqual"
         android:background="#ffff7969"
@@ -232,5 +232,45 @@
         android:layout_alignRight="@+id/buttonSign"
         android:layout_alignEnd="@+id/buttonSign"
         android:layout_below="@+id/buttonSign" />
+
+    <Button
+        android:layout_width="76dp"
+        android:layout_height="40dp"
+        android:text="@string/square_root_symbol"
+        android:id="@+id/buttonSqrt"
+        android:layout_alignTop="@+id/buttonBackspace"
+        android:layout_alignRight="@+id/editCalc"
+        android:layout_alignEnd="@+id/editCalc"
+        android:onClick="btnClicked"/>
+
+    <Button
+        android:layout_width="76dp"
+        android:layout_height="40dp"
+        android:text="@string/x_squared"
+        android:id="@+id/buttonSquared"
+        android:layout_above="@+id/buttonMinus"
+        android:layout_toLeftOf="@+id/buttonSqrt"
+        android:layout_toStartOf="@+id/buttonSqrt"
+        android:onClick="btnClicked" />
+
+    <Button
+        android:layout_width="76dp"
+        android:layout_height="40dp"
+        android:text="%"
+        android:id="@+id/buttonPercent"
+        android:layout_alignTop="@+id/buttonSquared"
+        android:layout_toLeftOf="@+id/buttonSquared"
+        android:layout_toStartOf="@+id/buttonSquared"
+        android:onClick="btnClicked" />
+
+    <Button
+        android:layout_width="76dp"
+        android:layout_height="40dp"
+        android:text="x^y"
+        android:id="@+id/buttonPower"
+        android:layout_alignTop="@+id/buttonMinus"
+        android:layout_toLeftOf="@+id/buttonSqrt"
+        android:layout_toStartOf="@+id/buttonSqrt"
+        android:onClick="btnClicked" />
 
 </RelativeLayout>

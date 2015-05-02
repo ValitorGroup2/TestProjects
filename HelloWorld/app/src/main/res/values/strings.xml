@@ -10,4 +10,6 @@
     <string name="alert">Alert</string>
     <string name="title_activity_calculator">Calculator</string>
     <string name="action_calculator">Reiknivél</string>
+    <string name="square_root_symbol">\u221a</string>
+    <string name="x_squared">x^2</string>
 </resources>

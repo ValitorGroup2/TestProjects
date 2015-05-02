@@ -2,6 +2,7 @@ package helloworld.com.helloworld;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,20 +16,29 @@ public class Calculator extends Activity {
     private EditText Src;
     private float NumberBf = 0;  //save screen before button press operation
     private String Operation ="";
-    //private ButtonClickListener btnClicked;
+    private int lastButton = 0;
+    private boolean flipForEqual = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calculator);
 
         Src = (EditText)findViewById(R.id.editCalc);
+       Button b = (Button)findViewById(R.id.buttonSquared);
+        if (b != null)
+            b.setText(Html.fromHtml("x<sup>2</sup>"));
+        b = (Button)findViewById(R.id.buttonPower);
+        if (b != null)
+            b.setText(Html.fromHtml("y<sup>x</sup>"));
 
     }
 
     public void btnClicked(View v)
     {
         String numb;
-        switch(v.getId())
+        int id = v.getId();
+        switch(id)
         {
             case R.id.buttonClear:
                 Src.setText("0");
@@ -46,6 +56,20 @@ public class Calculator extends Activity {
                 break;
             case R.id.buttonMultiply:
                 mMath("*");
+                break;
+            case R.id.buttonPercent:
+                mMath("%");
+                break;
+            case R.id.buttonPower:
+                mMath("Power");
+                break;
+            case R.id.buttonSqrt:
+                mMath("Sqrt");
+                mResult(false);
+                break;
+            case R.id.buttonSquared:
+                mMath("Squared");
+                mResult(false);
                 break;
             case R.id.buttonBackspace:
                 numb = Src.getText().toString();
@@ -67,6 +91,7 @@ public class Calculator extends Activity {
                 break;
             case R.id.buttonSign:
                 numb = Src.getText().toString();
+                Operation = "";
                 if (numb.length() < 1) {
                     Src.setText("0");
                 }
@@ -80,15 +105,20 @@ public class Calculator extends Activity {
                 }
                 break;
             case R.id.buttonEqual:
-                //todo: villa ef ýtt er mörgu sinnum  á '=' þá leggst rétta talan ekki við útkomuna
-                //todo: dæmi:  ýttu á 1 + 2 = = = ; útkoman ætti a vera 7 en við fáum 5
-                mResult();
+
+                mResult(lastButton != R.id.buttonEqual);
                 break;
             default:
                 numb = ((Button) v).getText().toString();
                 getKeyboard(numb);
                 break;
         }
+
+        lastButton = id;
+        if (lastButton != R.id.buttonEqual) {
+            flipForEqual = false;
+        }
+
     }
 
     public void mMath(String str){
@@ -113,9 +143,10 @@ public class Calculator extends Activity {
         Src.setText(SrcCurrent);
     }
 
-    public void mResult(){
+    public void mResult(boolean saveNumberAf){
         float NumAf;
         float result = 0;
+        float NumBf = NumberBf;
         if(Operation.length()<1) {
             return;
         }
@@ -128,15 +159,24 @@ public class Calculator extends Activity {
             NumAf = 0; //an error
         }
 
-        str = String.valueOf(NumberBf) + " " + Operation + " " + String.valueOf(NumAf);
+
+        if (flipForEqual){
+            float tmp = NumAf;
+            NumAf = NumBf;
+            NumBf = tmp;
+        }
+        if (Operation.equals("Sqrt") || Operation.equals("Squared"))
+            str = Operation + " " + String.valueOf(NumBf);
+        else
+            str = String.valueOf(NumBf) + " " + Operation + " " + String.valueOf(NumAf);
 
         if (Operation.equals("+"))
         {
-            result = NumberBf + NumAf ;
+            result = NumBf + NumAf ;
         }
         else if (Operation.equals("-"))
         {
-            result =  NumberBf - NumAf;
+            result =  NumBf - NumAf;
 
         }
         else if (Operation.equals("/"))
@@ -144,11 +184,37 @@ public class Calculator extends Activity {
             if (NumAf == 0) //no null division
                 result = 0;
             else
-                result = NumberBf / NumAf;
+                result = NumBf / NumAf;
         }
         else if (Operation.equals("*"))
         {
-            result = NumberBf * NumAf ;
+            result = NumBf * NumAf ;
+        }
+        else if (Operation.equals("%"))
+        {
+            result = NumBf * (NumAf/100) ;
+        }
+        else if (Operation.equals("Power"))
+        {
+            result = (float)(double)Math.pow(NumBf, NumAf);
+
+        }
+
+        else if (Operation.equals("Sqrt"))
+        {
+            result = (float)(double)Math.sqrt(NumBf);
+            NumAf = NumBf;
+        }
+        else if (Operation.equals("Squared"))
+        {
+            result = (float)(double)Math.pow(NumBf, 2);
+            NumAf = NumBf;
+        }
+
+        if (saveNumberAf){
+
+                NumberBf = NumAf;
+                flipForEqual = true;
         }
 
         Toast.makeText(getApplicationContext(), str, Toast.LENGTH_LONG).show();
