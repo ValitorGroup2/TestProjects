@@ -13,8 +13,8 @@ import android.widget.Toast;
 public class Calculator extends Activity {
 
     private EditText Src;
-    private float NumberBf;  //save screen before button press operation
-    private String Operation;
+    private float NumberBf = 0;  //save screen before button press operation
+    private String Operation ="";
     //private ButtonClickListener btnClicked;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +80,8 @@ public class Calculator extends Activity {
                 }
                 break;
             case R.id.buttonEqual:
+                //todo: villa ef ýtt er mörgu sinnum  á '=' þá leggst rétta talan ekki við útkomuna
+                //todo: dæmi:  ýttu á 1 + 2 = = = ; útkoman ætti a vera 7 en við fáum 5
                 mResult();
                 break;
             default:
@@ -90,10 +92,17 @@ public class Calculator extends Activity {
     }
 
     public void mMath(String str){
-        NumberBf = Float.parseFloat(Src.getText().toString());
+        try {
+            NumberBf = Float.parseFloat(Src.getText().toString());
+        }
+        catch(Exception e)
+        {
+            Toast.makeText(getApplicationContext(), "Invalid number", Toast.LENGTH_LONG).show();
+            NumberBf = 0; //an error
+        }
+
         Operation = str;
         Src.setText("0");
-        Toast.makeText(getApplicationContext(), str, Toast.LENGTH_LONG).show();
     }
 
     public void getKeyboard(String str){
@@ -105,12 +114,25 @@ public class Calculator extends Activity {
     }
 
     public void mResult(){
-        float NumAf = Float.parseFloat(Src.getText().toString());
+        float NumAf;
         float result = 0;
-        String str = String.valueOf(NumberBf) + " " + Operation + " " + String.valueOf(NumAf);
+        if(Operation.length()<1) {
+            return;
+        }
+        String str;
+        try {
+            NumAf = Float.parseFloat(Src.getText().toString());
+        }
+        catch(Exception e){
+            Toast.makeText(getApplicationContext(), "Invalid number", Toast.LENGTH_SHORT).show();
+            NumAf = 0; //an error
+        }
+
+        str = String.valueOf(NumberBf) + " " + Operation + " " + String.valueOf(NumAf);
+
         if (Operation.equals("+"))
         {
-            result = NumAf + NumberBf;
+            result = NumberBf + NumAf ;
         }
         else if (Operation.equals("-"))
         {
@@ -123,11 +145,10 @@ public class Calculator extends Activity {
                 result = 0;
             else
                 result = NumberBf / NumAf;
-
         }
         else if (Operation.equals("*"))
         {
-            result = NumAf * NumberBf;
+            result = NumberBf * NumAf ;
         }
 
         Toast.makeText(getApplicationContext(), str, Toast.LENGTH_LONG).show();
