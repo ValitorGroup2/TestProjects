@@ -5,4 +5,9 @@
     <string name="action_settings">Settings</string>
     <string name="hintName">User name</string>
     <string name="hintPassword">Password</string>
+    <string name="title_activity_settings_page">Settings</string>
+    <string name="log_in">Log in</string>
+    <string name="alert">Alert</string>
+    <string name="title_activity_calculator">Calculator</string>
+    <string name="action_calculator">Reiknivél</string>
 </resources>
