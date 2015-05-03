@@ -15,4 +15,7 @@
     <string name="descripe_vistit_settings_page">Til að geta breytt stillingum, þá þarft þú að fara á heimasíðu Vasans og breyta þeim þar.</string>
     <string name="visit_website">Opna heimasíðu</string>
     <string name="url_website">http://www.guttih.com</string>
+    <string name="PREF_FILE">Preferences</string>
+    <string name="PREF_CHARGE_VALUE">chargeValueForCard</string>
+    <string name="skra_value">Skrá upphæð</string>
 </resources>

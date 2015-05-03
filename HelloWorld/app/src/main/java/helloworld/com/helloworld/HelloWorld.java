@@ -1,12 +1,14 @@
 package helloworld.com.helloworld;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class HelloWorld extends ActionBarActivity {
     TextView textView;
@@ -16,6 +18,19 @@ public class HelloWorld extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.helloworld_world);
         textView = (TextView)findViewById(R.id.change_this_text);
+
+        float val = getSavedChargeCalue();
+
+        Toast.makeText(getApplicationContext(), "Saved value:" + Float.toString(val), Toast.LENGTH_LONG).show();
+
+
+    }
+    public float getSavedChargeCalue(){
+        float ret;
+
+        SharedPreferences sPrefs = HelloWorld.this.getSharedPreferences(getString(R.string.PREF_FILE), MODE_PRIVATE);
+        ret = sPrefs.getFloat(getString(R.string.PREF_CHARGE_VALUE),0);
+        return  ret;
     }
     public void changeTheText(View view)
     {

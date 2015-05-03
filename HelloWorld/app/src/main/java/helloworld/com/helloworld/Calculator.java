@@ -1,6 +1,7 @@
 package helloworld.com.helloworld;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.Menu;
@@ -221,6 +222,25 @@ public class Calculator extends Activity {
         Src.setText(String.valueOf(result));
     }
 
+    public void btnSaveValueClick(View view) {
+        float num;
+        try {
+            num = Float.parseFloat(Src.getText().toString());
+        }
+        catch(Exception e){
+            Toast.makeText(getApplicationContext(), "Invalid number", Toast.LENGTH_SHORT).show();
+            num = 0; //an error
+        };
+
+        SharedPreferences sPrefs = Calculator.this.getSharedPreferences(getString(R.string.PREF_FILE), MODE_PRIVATE);
+        SharedPreferences.Editor editor = sPrefs.edit();
+        editor.putFloat(getString(R.string.PREF_CHARGE_VALUE), num);
+        if (editor.commit())
+            Toast.makeText(getApplicationContext(), "upphæð " + Float.toString(num) + "skráð.", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(getApplicationContext(), "Ekki tókst að skrá töluna " + Float.toString(num), Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -242,4 +262,6 @@ public class Calculator extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }
